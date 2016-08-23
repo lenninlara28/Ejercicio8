@@ -5,6 +5,9 @@
  */
 package Interfaz;
 
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp 14
@@ -49,6 +52,17 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setText("Ingrese  Cuantas Horas Trabajo ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        txtHoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActionListene(evt);
+            }
+        });
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHorasKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 110, -1));
 
         cmbHacer.setBackground(new java.awt.Color(0, 0, 0));
@@ -97,7 +111,10 @@ public class Principal extends javax.swing.JFrame {
     private void cmbHacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHacerActionPerformed
        String descuento,total;
        int horas,porcen,paga,pago;
-       
+       if (txtHoras.getText().trim().isEmpty()){
+         JOptionPane.showMessageDialog(this,"Digite Las Horas Que Trabajo ","error", JOptionPane.ERROR_MESSAGE);
+         txtHoras.requestFocusInWindow();}
+       else{
        horas=Integer.parseInt(txtHoras.getText());
        pago=20000*horas;
        porcen=(pago*5)/100;
@@ -108,10 +125,22 @@ public class Principal extends javax.swing.JFrame {
        
        total=String.valueOf(paga);
        txtTotal.setText("$"+total);
-       
+       }
        
        
     }//GEN-LAST:event_cmbHacerActionPerformed
+
+    private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
+       char c=evt.getKeyChar(); 
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+              evt.consume();}
+    }//GEN-LAST:event_txtHorasKeyTyped
+
+    private void ActionListene(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActionListene
+        ((JComponent) evt.getSource()).transferFocus();
+    }//GEN-LAST:event_ActionListene
 
     /**
      * @param args the command line arguments
