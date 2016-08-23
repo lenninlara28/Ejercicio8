@@ -55,6 +55,11 @@ public class Principal extends javax.swing.JFrame {
         cmbHacer.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmbHacer.setForeground(new java.awt.Color(255, 255, 255));
         cmbHacer.setText("OK");
+        cmbHacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbHacerActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmbHacer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -88,6 +93,25 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbHacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHacerActionPerformed
+       String descuento,total;
+       int horas,porcen,paga,pago;
+       
+       horas=Integer.parseInt(txtHoras.getText());
+       pago=20000*horas;
+       porcen=(pago*5)/100;
+       paga=pago-porcen;
+       
+       descuento=String.valueOf(porcen);
+       txtDescuento.setText("$"+descuento);
+       
+       total=String.valueOf(paga);
+       txtTotal.setText("$"+total);
+       
+       
+       
+    }//GEN-LAST:event_cmbHacerActionPerformed
 
     /**
      * @param args the command line arguments
